@@ -1,20 +1,16 @@
+import 'package:dashbook/dashbook.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+import 'steps/1_getting_started/getting_started.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+void main() {
+  final dashbook = Dashbook.dualTheme(
+    light: ThemeData.light(),
+    dark: ThemeData.dark(),
+    initWithLight: false,
+  );
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Illust Guessing App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Startup Name Generator'),
-        ),
-        body: const Center(child: SelectableText("Hello")),
-      ),
-    );
-  }
+  addGettingStarted(dashbook);
+
+  runApp(dashbook);
 }
