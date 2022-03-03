@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:illust_guessing_app/src/models/quiz_chapter.dart';
 import 'package:illust_guessing_app/src/loaders/json_loader.dart';
@@ -8,7 +7,7 @@ Future<void> main() async {
   final jsonLoader = JsonLoader();
   final String jsonString = await jsonLoader.loadQuizzes();
 
-  test('Succeeded loading json file', () async {
+  test('Create QuizChapter from json', () async {
     var data = json.decode(jsonString);
     var chapter = data[0]['chapters'][0];
 
