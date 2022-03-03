@@ -6,6 +6,11 @@ version: 1.0.0+1
 environment:
   sdk: '>=2.16.1 <3.0.0'
 
+# example: "slidy run test" like npm scripts
+scripts:
+  test: flutter test -r expanded
+  build: flutter pub run build_runner build
+
 dependencies:
   flutter:
     sdk: flutter
