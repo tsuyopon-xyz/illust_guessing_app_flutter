@@ -11,29 +11,41 @@ Future<void> main() async {
   final String jsonString = await jsonLoader.loadQuizzes();
   var singleQuizJson = json.decode(jsonString)[0];
 
-  test('Create SelectedQuizProgress', () {
-    Quiz quiz = Quiz.fromJson(singleQuizJson);
-    SelectedQuizProgress sqp = SelectedQuizProgress(quiz: quiz);
+  test('Create SelectedQuizProgress without quiz data.', () {
+    SelectedQuizProgress sqp = SelectedQuizProgress();
 
-    expect(sqp.quiz.id, quiz.id);
-    expect(sqp.currentChapterOrder, 1, reason: 'Default is 1');
-    expect(sqp.hasNextChapter, true, reason: 'Default is true');
+    expect(sqp.quiz, null);
+    expect(sqp.currentChapterOrder, null);
+    expect(sqp.hasNextChapter(), false);
   });
 
-  test('Copy SelectedQuizProgress and update default values', () {
+  test('Create SelectedQuizProgress with quiz data', () {
     Quiz quiz = Quiz.fromJson(singleQuizJson);
-    SelectedQuizProgress sqp = SelectedQuizProgress(quiz: quiz);
+    int firstChapterOrder = quiz.chapters.first.order;
+    SelectedQuizProgress sqp = SelectedQuizProgress(
+        quiz: quiz, currentChapterOrder: firstChapterOrder);
 
+    expect(sqp.quiz?.id, quiz.id);
+    expect(sqp.currentChapterOrder, firstChapterOrder);
+    expect(sqp.hasNextChapter(), true);
+  });
+
+  test('Copy SelectedQuizProgress and update value', () {
+    SelectedQuizProgress sqp = SelectedQuizProgress();
+
+    expect(sqp.quiz, null);
+    expect(sqp.currentChapterOrder, null);
+    expect(sqp.hasNextChapter(), false);
+
+    Quiz quiz = Quiz.fromJson(singleQuizJson);
     int lastChapterOrder = quiz.chapters.last.order;
-    bool hasNextChapter = false;
 
-    SelectedQuizProgress copiedSqp = sqp.copyWith(
-        currentChapterOrder: quiz.chapters.length,
-        hasNextChapter: hasNextChapter);
+    SelectedQuizProgress copiedSqp =
+        sqp.copyWith(quiz: quiz, currentChapterOrder: quiz.chapters.length);
 
-    expect(copiedSqp.quiz.id, quiz.id);
+    expect(copiedSqp.quiz?.id, quiz.id);
     expect(copiedSqp.currentChapterOrder, lastChapterOrder);
-    expect(copiedSqp.hasNextChapter, hasNextChapter);
+    expect(copiedSqp.hasNextChapter(), false);
     expect(copiedSqp, isNot(equals(sqp)));
   });
 }

@@ -9,9 +9,10 @@ part of 'selected_quiz_progress.dart';
 _$_SelectedQuizProgress _$$_SelectedQuizProgressFromJson(
         Map<String, dynamic> json) =>
     _$_SelectedQuizProgress(
-      quiz: Quiz.fromJson(json['quiz'] as Map<String, dynamic>),
-      currentChapterOrder: json['currentChapterOrder'] as int? ?? 1,
-      hasNextChapter: json['hasNextChapter'] as bool? ?? true,
+      quiz: json['quiz'] == null
+          ? null
+          : Quiz.fromJson(json['quiz'] as Map<String, dynamic>),
+      currentChapterOrder: json['currentChapterOrder'] as int?,
     );
 
 Map<String, dynamic> _$$_SelectedQuizProgressToJson(
@@ -19,5 +20,4 @@ Map<String, dynamic> _$$_SelectedQuizProgressToJson(
     <String, dynamic>{
       'quiz': instance.quiz,
       'currentChapterOrder': instance.currentChapterOrder,
-      'hasNextChapter': instance.hasNextChapter,
     };

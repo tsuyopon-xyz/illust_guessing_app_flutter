@@ -6,11 +6,17 @@ part 'selected_quiz_progress.g.dart';
 
 @freezed
 class SelectedQuizProgress with _$SelectedQuizProgress {
-  factory SelectedQuizProgress(
-      {required Quiz quiz,
-      @Default(1) int currentChapterOrder,
-      @Default(true) bool hasNextChapter}) = _SelectedQuizProgress;
+  const SelectedQuizProgress._();
+  factory SelectedQuizProgress({Quiz? quiz, int? currentChapterOrder}) =
+      _SelectedQuizProgress;
 
   factory SelectedQuizProgress.fromJson(Map<String, dynamic> json) =>
       _$SelectedQuizProgressFromJson(json);
+
+  bool hasNextChapter() {
+    if (quiz == null) return false;
+    if (currentChapterOrder == null) return false;
+
+    return currentChapterOrder! < quiz!.chapters.length;
+  }
 }
