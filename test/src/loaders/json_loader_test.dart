@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:illust_guessing_app/src/loaders/json_loader.dart';
 
@@ -9,7 +8,7 @@ void main() {
       String json = await loader.loadQuizzes();
       expect(json.isNotEmpty, equals(true));
     } on Exception catch (e) {
-      debugPrint("error : $e");
+      print("error : $e");
       expect(1, equals(0));
     }
   });
