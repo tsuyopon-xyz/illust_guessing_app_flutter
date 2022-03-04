@@ -7,7 +7,7 @@ Future<void> main() async {
   final jsonLoader = JsonLoader();
   final String jsonString = await jsonLoader.loadQuizzes();
 
-  test('Create Quiz from json', () async {
+  test('Create single quiz from json', () {
     var data = json.decode(jsonString);
     var singleQuizJson = data[0];
 
