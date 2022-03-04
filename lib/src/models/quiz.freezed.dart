@@ -25,7 +25,7 @@ class _$QuizTearOff {
   _Quiz call(
       {required int id,
       required String title,
-      required List<QuizChapter> chapters}) {
+      required List<_QuizChapter> chapters}) {
     return _Quiz(
       id: id,
       title: title,
@@ -45,7 +45,7 @@ const $Quiz = _$QuizTearOff();
 mixin _$Quiz {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  List<QuizChapter> get chapters => throw _privateConstructorUsedError;
+  List<_QuizChapter> get chapters => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +56,7 @@ mixin _$Quiz {
 abstract class $QuizCopyWith<$Res> {
   factory $QuizCopyWith(Quiz value, $Res Function(Quiz) then) =
       _$QuizCopyWithImpl<$Res>;
-  $Res call({int id, String title, List<QuizChapter> chapters});
+  $Res call({int id, String title, List<_QuizChapter> chapters});
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class _$QuizCopyWithImpl<$Res> implements $QuizCopyWith<$Res> {
       chapters: chapters == freezed
           ? _value.chapters
           : chapters // ignore: cast_nullable_to_non_nullable
-              as List<QuizChapter>,
+              as List<_QuizChapter>,
     ));
   }
 }
@@ -95,7 +95,7 @@ abstract class _$QuizCopyWith<$Res> implements $QuizCopyWith<$Res> {
   factory _$QuizCopyWith(_Quiz value, $Res Function(_Quiz) then) =
       __$QuizCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String title, List<QuizChapter> chapters});
+  $Res call({int id, String title, List<_QuizChapter> chapters});
 }
 
 /// @nodoc
@@ -125,7 +125,7 @@ class __$QuizCopyWithImpl<$Res> extends _$QuizCopyWithImpl<$Res>
       chapters: chapters == freezed
           ? _value.chapters
           : chapters // ignore: cast_nullable_to_non_nullable
-              as List<QuizChapter>,
+              as List<_QuizChapter>,
     ));
   }
 }
@@ -142,7 +142,7 @@ class _$_Quiz implements _Quiz {
   @override
   final String title;
   @override
-  final List<QuizChapter> chapters;
+  final List<_QuizChapter> chapters;
 
   @override
   String toString() {
@@ -181,7 +181,7 @@ abstract class _Quiz implements Quiz {
   factory _Quiz(
       {required int id,
       required String title,
-      required List<QuizChapter> chapters}) = _$_Quiz;
+      required List<_QuizChapter> chapters}) = _$_Quiz;
 
   factory _Quiz.fromJson(Map<String, dynamic> json) = _$_Quiz.fromJson;
 
@@ -190,8 +190,484 @@ abstract class _Quiz implements Quiz {
   @override
   String get title;
   @override
-  List<QuizChapter> get chapters;
+  List<_QuizChapter> get chapters;
   @override
   @JsonKey(ignore: true)
   _$QuizCopyWith<_Quiz> get copyWith => throw _privateConstructorUsedError;
+}
+
+_QuizChapter _$_QuizChapterFromJson(Map<String, dynamic> json) {
+  return __QuizChapter.fromJson(json);
+}
+
+/// @nodoc
+class _$_QuizChapterTearOff {
+  const _$_QuizChapterTearOff();
+
+  __QuizChapter call(
+      {required int order,
+      required String question,
+      required String hint,
+      required String comment,
+      @JsonKey(name: 'correct_area') required _CorrectArea correctArea}) {
+    return __QuizChapter(
+      order: order,
+      question: question,
+      hint: hint,
+      comment: comment,
+      correctArea: correctArea,
+    );
+  }
+
+  _QuizChapter fromJson(Map<String, Object?> json) {
+    return _QuizChapter.fromJson(json);
+  }
+}
+
+/// @nodoc
+const _$QuizChapter = _$_QuizChapterTearOff();
+
+/// @nodoc
+mixin _$_QuizChapter {
+  int get order => throw _privateConstructorUsedError;
+  String get question => throw _privateConstructorUsedError;
+  String get hint => throw _privateConstructorUsedError;
+  String get comment => throw _privateConstructorUsedError;
+  @JsonKey(name: 'correct_area')
+  _CorrectArea get correctArea => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$QuizChapterCopyWith<_QuizChapter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$QuizChapterCopyWith<$Res> {
+  factory _$QuizChapterCopyWith(
+          _QuizChapter value, $Res Function(_QuizChapter) then) =
+      __$QuizChapterCopyWithImpl<$Res>;
+  $Res call(
+      {int order,
+      String question,
+      String hint,
+      String comment,
+      @JsonKey(name: 'correct_area') _CorrectArea correctArea});
+
+  _$CorrectAreaCopyWith<$Res> get correctArea;
+}
+
+/// @nodoc
+class __$QuizChapterCopyWithImpl<$Res> implements _$QuizChapterCopyWith<$Res> {
+  __$QuizChapterCopyWithImpl(this._value, this._then);
+
+  final _QuizChapter _value;
+  // ignore: unused_field
+  final $Res Function(_QuizChapter) _then;
+
+  @override
+  $Res call({
+    Object? order = freezed,
+    Object? question = freezed,
+    Object? hint = freezed,
+    Object? comment = freezed,
+    Object? correctArea = freezed,
+  }) {
+    return _then(_value.copyWith(
+      order: order == freezed
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
+      question: question == freezed
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
+              as String,
+      hint: hint == freezed
+          ? _value.hint
+          : hint // ignore: cast_nullable_to_non_nullable
+              as String,
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String,
+      correctArea: correctArea == freezed
+          ? _value.correctArea
+          : correctArea // ignore: cast_nullable_to_non_nullable
+              as _CorrectArea,
+    ));
+  }
+
+  @override
+  _$CorrectAreaCopyWith<$Res> get correctArea {
+    return _$CorrectAreaCopyWith<$Res>(_value.correctArea, (value) {
+      return _then(_value.copyWith(correctArea: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$_QuizChapterCopyWith<$Res>
+    implements _$QuizChapterCopyWith<$Res> {
+  factory _$_QuizChapterCopyWith(
+          __QuizChapter value, $Res Function(__QuizChapter) then) =
+      __$_QuizChapterCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {int order,
+      String question,
+      String hint,
+      String comment,
+      @JsonKey(name: 'correct_area') _CorrectArea correctArea});
+
+  @override
+  _$CorrectAreaCopyWith<$Res> get correctArea;
+}
+
+/// @nodoc
+class __$_QuizChapterCopyWithImpl<$Res> extends __$QuizChapterCopyWithImpl<$Res>
+    implements _$_QuizChapterCopyWith<$Res> {
+  __$_QuizChapterCopyWithImpl(
+      __QuizChapter _value, $Res Function(__QuizChapter) _then)
+      : super(_value, (v) => _then(v as __QuizChapter));
+
+  @override
+  __QuizChapter get _value => super._value as __QuizChapter;
+
+  @override
+  $Res call({
+    Object? order = freezed,
+    Object? question = freezed,
+    Object? hint = freezed,
+    Object? comment = freezed,
+    Object? correctArea = freezed,
+  }) {
+    return _then(__QuizChapter(
+      order: order == freezed
+          ? _value.order
+          : order // ignore: cast_nullable_to_non_nullable
+              as int,
+      question: question == freezed
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
+              as String,
+      hint: hint == freezed
+          ? _value.hint
+          : hint // ignore: cast_nullable_to_non_nullable
+              as String,
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String,
+      correctArea: correctArea == freezed
+          ? _value.correctArea
+          : correctArea // ignore: cast_nullable_to_non_nullable
+              as _CorrectArea,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$__QuizChapter implements __QuizChapter {
+  _$__QuizChapter(
+      {required this.order,
+      required this.question,
+      required this.hint,
+      required this.comment,
+      @JsonKey(name: 'correct_area') required this.correctArea});
+
+  factory _$__QuizChapter.fromJson(Map<String, dynamic> json) =>
+      _$$__QuizChapterFromJson(json);
+
+  @override
+  final int order;
+  @override
+  final String question;
+  @override
+  final String hint;
+  @override
+  final String comment;
+  @override
+  @JsonKey(name: 'correct_area')
+  final _CorrectArea correctArea;
+
+  @override
+  String toString() {
+    return '_QuizChapter(order: $order, question: $question, hint: $hint, comment: $comment, correctArea: $correctArea)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is __QuizChapter &&
+            const DeepCollectionEquality().equals(other.order, order) &&
+            const DeepCollectionEquality().equals(other.question, question) &&
+            const DeepCollectionEquality().equals(other.hint, hint) &&
+            const DeepCollectionEquality().equals(other.comment, comment) &&
+            const DeepCollectionEquality()
+                .equals(other.correctArea, correctArea));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(order),
+      const DeepCollectionEquality().hash(question),
+      const DeepCollectionEquality().hash(hint),
+      const DeepCollectionEquality().hash(comment),
+      const DeepCollectionEquality().hash(correctArea));
+
+  @JsonKey(ignore: true)
+  @override
+  _$_QuizChapterCopyWith<__QuizChapter> get copyWith =>
+      __$_QuizChapterCopyWithImpl<__QuizChapter>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$__QuizChapterToJson(this);
+  }
+}
+
+abstract class __QuizChapter implements _QuizChapter {
+  factory __QuizChapter(
+          {required int order,
+          required String question,
+          required String hint,
+          required String comment,
+          @JsonKey(name: 'correct_area') required _CorrectArea correctArea}) =
+      _$__QuizChapter;
+
+  factory __QuizChapter.fromJson(Map<String, dynamic> json) =
+      _$__QuizChapter.fromJson;
+
+  @override
+  int get order;
+  @override
+  String get question;
+  @override
+  String get hint;
+  @override
+  String get comment;
+  @override
+  @JsonKey(name: 'correct_area')
+  _CorrectArea get correctArea;
+  @override
+  @JsonKey(ignore: true)
+  _$_QuizChapterCopyWith<__QuizChapter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+_CorrectArea _$_CorrectAreaFromJson(Map<String, dynamic> json) {
+  return __CorrectArea.fromJson(json);
+}
+
+/// @nodoc
+class _$_CorrectAreaTearOff {
+  const _$_CorrectAreaTearOff();
+
+  __CorrectArea call(
+      {required double x,
+      required double y,
+      required double width,
+      required double height}) {
+    return __CorrectArea(
+      x: x,
+      y: y,
+      width: width,
+      height: height,
+    );
+  }
+
+  _CorrectArea fromJson(Map<String, Object?> json) {
+    return _CorrectArea.fromJson(json);
+  }
+}
+
+/// @nodoc
+const _$CorrectArea = _$_CorrectAreaTearOff();
+
+/// @nodoc
+mixin _$_CorrectArea {
+  double get x => throw _privateConstructorUsedError;
+  double get y => throw _privateConstructorUsedError;
+  double get width => throw _privateConstructorUsedError;
+  double get height => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$CorrectAreaCopyWith<_CorrectArea> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$CorrectAreaCopyWith<$Res> {
+  factory _$CorrectAreaCopyWith(
+          _CorrectArea value, $Res Function(_CorrectArea) then) =
+      __$CorrectAreaCopyWithImpl<$Res>;
+  $Res call({double x, double y, double width, double height});
+}
+
+/// @nodoc
+class __$CorrectAreaCopyWithImpl<$Res> implements _$CorrectAreaCopyWith<$Res> {
+  __$CorrectAreaCopyWithImpl(this._value, this._then);
+
+  final _CorrectArea _value;
+  // ignore: unused_field
+  final $Res Function(_CorrectArea) _then;
+
+  @override
+  $Res call({
+    Object? x = freezed,
+    Object? y = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
+  }) {
+    return _then(_value.copyWith(
+      x: x == freezed
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as double,
+      y: y == freezed
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
+              as double,
+      width: width == freezed
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as double,
+      height: height == freezed
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$_CorrectAreaCopyWith<$Res>
+    implements _$CorrectAreaCopyWith<$Res> {
+  factory _$_CorrectAreaCopyWith(
+          __CorrectArea value, $Res Function(__CorrectArea) then) =
+      __$_CorrectAreaCopyWithImpl<$Res>;
+  @override
+  $Res call({double x, double y, double width, double height});
+}
+
+/// @nodoc
+class __$_CorrectAreaCopyWithImpl<$Res> extends __$CorrectAreaCopyWithImpl<$Res>
+    implements _$_CorrectAreaCopyWith<$Res> {
+  __$_CorrectAreaCopyWithImpl(
+      __CorrectArea _value, $Res Function(__CorrectArea) _then)
+      : super(_value, (v) => _then(v as __CorrectArea));
+
+  @override
+  __CorrectArea get _value => super._value as __CorrectArea;
+
+  @override
+  $Res call({
+    Object? x = freezed,
+    Object? y = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
+  }) {
+    return _then(__CorrectArea(
+      x: x == freezed
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as double,
+      y: y == freezed
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
+              as double,
+      width: width == freezed
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as double,
+      height: height == freezed
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$__CorrectArea implements __CorrectArea {
+  _$__CorrectArea(
+      {required this.x,
+      required this.y,
+      required this.width,
+      required this.height});
+
+  factory _$__CorrectArea.fromJson(Map<String, dynamic> json) =>
+      _$$__CorrectAreaFromJson(json);
+
+  @override
+  final double x;
+  @override
+  final double y;
+  @override
+  final double width;
+  @override
+  final double height;
+
+  @override
+  String toString() {
+    return '_CorrectArea(x: $x, y: $y, width: $width, height: $height)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is __CorrectArea &&
+            const DeepCollectionEquality().equals(other.x, x) &&
+            const DeepCollectionEquality().equals(other.y, y) &&
+            const DeepCollectionEquality().equals(other.width, width) &&
+            const DeepCollectionEquality().equals(other.height, height));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(x),
+      const DeepCollectionEquality().hash(y),
+      const DeepCollectionEquality().hash(width),
+      const DeepCollectionEquality().hash(height));
+
+  @JsonKey(ignore: true)
+  @override
+  _$_CorrectAreaCopyWith<__CorrectArea> get copyWith =>
+      __$_CorrectAreaCopyWithImpl<__CorrectArea>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$__CorrectAreaToJson(this);
+  }
+}
+
+abstract class __CorrectArea implements _CorrectArea {
+  factory __CorrectArea(
+      {required double x,
+      required double y,
+      required double width,
+      required double height}) = _$__CorrectArea;
+
+  factory __CorrectArea.fromJson(Map<String, dynamic> json) =
+      _$__CorrectArea.fromJson;
+
+  @override
+  double get x;
+  @override
+  double get y;
+  @override
+  double get width;
+  @override
+  double get height;
+  @override
+  @JsonKey(ignore: true)
+  _$_CorrectAreaCopyWith<__CorrectArea> get copyWith =>
+      throw _privateConstructorUsedError;
 }
