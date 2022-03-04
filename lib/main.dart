@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() => runApp(const MyApp());
+import 'src/views/quiz_select_view.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const ProviderScope(child: MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -8,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Illust Guessing App',
+      title: 'イラスト推理',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Startup Name Generator'),
+          title: const Text('イラスト推理'),
         ),
-        body: const Center(child: SelectableText("Hello")),
+        body: const QuizSelectView(),
       ),
     );
   }

@@ -9,6 +9,7 @@ part 'quiz.g.dart';
 class Quiz with _$Quiz {
   factory Quiz({
     required int id,
+    required String title,
     required List<QuizChapter> chapters,
   }) = _Quiz;
 
