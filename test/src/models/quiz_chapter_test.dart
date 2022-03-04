@@ -4,6 +4,8 @@ import 'package:illust_guessing_app/src/models/quiz_chapter.dart';
 import 'package:illust_guessing_app/src/loaders/json_loader.dart';
 
 Future<void> main() async {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   final jsonLoader = JsonLoader();
   final String jsonString = await jsonLoader.loadQuizzes();
 

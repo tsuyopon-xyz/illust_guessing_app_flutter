@@ -2,6 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:illust_guessing_app/src/loaders/json_loader.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   test('Succeeded loading json file', () async {
     try {
       JsonLoader loader = JsonLoader();

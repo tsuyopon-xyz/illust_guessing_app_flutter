@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'package:flutter/services.dart' show rootBundle;
+// import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:universal_platform/universal_platform.dart';
 
 const quizzesJsonPath = 'assets/data/quizzes.json';
 
@@ -8,14 +11,6 @@ class JsonLoader {
   }
 
   Future<String> _load(String filePath) async {
-    File file = File(filePath);
-    bool hasFile = await file.exists();
-    if (!hasFile) {
-      throw Exception('$filePath is not found.');
-    }
-
-    final json = await file.readAsString();
-
-    return json;
+    return await rootBundle.loadString(filePath);
   }
 }

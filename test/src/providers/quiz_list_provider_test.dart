@@ -4,6 +4,8 @@ import 'package:illust_guessing_app/src/providers/quiz_list_provider.dart';
 import 'package:illust_guessing_app/src/models/quiz.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   test('Get all quiz instances in a list.', () async {
     final container = ProviderContainer();
     addTearDown(() {
