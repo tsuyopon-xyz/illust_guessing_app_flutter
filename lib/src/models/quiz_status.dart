@@ -7,8 +7,6 @@ part 'quiz_status.g.dart';
 
 @freezed
 class QuizStatus with _$QuizStatus {
-  const QuizStatus._();
-
   factory QuizStatus(
       {required int quizId,
       @Default(0) int completedChapterCount,

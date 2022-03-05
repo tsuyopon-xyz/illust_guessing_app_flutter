@@ -151,13 +151,12 @@ class __$QuizStatusCopyWithImpl<$Res> extends _$QuizStatusCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_QuizStatus extends _QuizStatus {
+class _$_QuizStatus implements _QuizStatus {
   _$_QuizStatus(
       {required this.quizId,
       this.completedChapterCount = 0,
       this.isCompleted = false,
-      this.isLocked = true})
-      : super._();
+      this.isLocked = true});
 
   factory _$_QuizStatus.fromJson(Map<String, dynamic> json) =>
       _$$_QuizStatusFromJson(json);
@@ -211,13 +210,12 @@ class _$_QuizStatus extends _QuizStatus {
   }
 }
 
-abstract class _QuizStatus extends QuizStatus {
+abstract class _QuizStatus implements QuizStatus {
   factory _QuizStatus(
       {required int quizId,
       int completedChapterCount,
       bool isCompleted,
       bool isLocked}) = _$_QuizStatus;
-  _QuizStatus._() : super._();
 
   factory _QuizStatus.fromJson(Map<String, dynamic> json) =
       _$_QuizStatus.fromJson;
