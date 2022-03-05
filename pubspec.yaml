@@ -8,7 +8,7 @@ environment:
 
 # example: "slidy run test" like npm scripts
 scripts:
-  test: flutter test -r expanded
+  test: flutter test -r expanded --no-sound-null-safety
   build: flutter pub run build_runner build
 
 dependencies:
@@ -22,6 +22,7 @@ dependencies:
   flutter_hooks: ^0.18.2+1
   hooks_riverpod: ^1.0.3
   universal_platform: ^1.0.0+1
+  shared_preferences: ^0.5.5
 
 dev_dependencies:
   flutter_test:
