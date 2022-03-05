@@ -7,7 +7,7 @@ part 'selected_quiz_progress.g.dart';
 @freezed
 class SelectedQuizProgress with _$SelectedQuizProgress {
   const SelectedQuizProgress._();
-  factory SelectedQuizProgress({Quiz? quiz, int? currentChapterOrder}) =
+  factory SelectedQuizProgress({Quiz? quiz, int? currentChapterIndex}) =
       _SelectedQuizProgress;
 
   factory SelectedQuizProgress.fromJson(Map<String, dynamic> json) =>
@@ -15,8 +15,8 @@ class SelectedQuizProgress with _$SelectedQuizProgress {
 
   bool hasNextChapter() {
     if (quiz == null) return false;
-    if (currentChapterOrder == null) return false;
+    if (currentChapterIndex == null) return false;
 
-    return currentChapterOrder! < quiz!.chapters.length;
+    return currentChapterIndex! < quiz!.chapters.length - 1;
   }
 }

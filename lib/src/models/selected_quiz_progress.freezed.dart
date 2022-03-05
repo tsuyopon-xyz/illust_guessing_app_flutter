@@ -22,10 +22,10 @@ SelectedQuizProgress _$SelectedQuizProgressFromJson(Map<String, dynamic> json) {
 class _$SelectedQuizProgressTearOff {
   const _$SelectedQuizProgressTearOff();
 
-  _SelectedQuizProgress call({Quiz? quiz, int? currentChapterOrder}) {
+  _SelectedQuizProgress call({Quiz? quiz, int? currentChapterIndex}) {
     return _SelectedQuizProgress(
       quiz: quiz,
-      currentChapterOrder: currentChapterOrder,
+      currentChapterIndex: currentChapterIndex,
     );
   }
 
@@ -40,7 +40,7 @@ const $SelectedQuizProgress = _$SelectedQuizProgressTearOff();
 /// @nodoc
 mixin _$SelectedQuizProgress {
   Quiz? get quiz => throw _privateConstructorUsedError;
-  int? get currentChapterOrder => throw _privateConstructorUsedError;
+  int? get currentChapterIndex => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +53,7 @@ abstract class $SelectedQuizProgressCopyWith<$Res> {
   factory $SelectedQuizProgressCopyWith(SelectedQuizProgress value,
           $Res Function(SelectedQuizProgress) then) =
       _$SelectedQuizProgressCopyWithImpl<$Res>;
-  $Res call({Quiz? quiz, int? currentChapterOrder});
+  $Res call({Quiz? quiz, int? currentChapterIndex});
 
   $QuizCopyWith<$Res>? get quiz;
 }
@@ -70,16 +70,16 @@ class _$SelectedQuizProgressCopyWithImpl<$Res>
   @override
   $Res call({
     Object? quiz = freezed,
-    Object? currentChapterOrder = freezed,
+    Object? currentChapterIndex = freezed,
   }) {
     return _then(_value.copyWith(
       quiz: quiz == freezed
           ? _value.quiz
           : quiz // ignore: cast_nullable_to_non_nullable
               as Quiz?,
-      currentChapterOrder: currentChapterOrder == freezed
-          ? _value.currentChapterOrder
-          : currentChapterOrder // ignore: cast_nullable_to_non_nullable
+      currentChapterIndex: currentChapterIndex == freezed
+          ? _value.currentChapterIndex
+          : currentChapterIndex // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -103,7 +103,7 @@ abstract class _$SelectedQuizProgressCopyWith<$Res>
           $Res Function(_SelectedQuizProgress) then) =
       __$SelectedQuizProgressCopyWithImpl<$Res>;
   @override
-  $Res call({Quiz? quiz, int? currentChapterOrder});
+  $Res call({Quiz? quiz, int? currentChapterIndex});
 
   @override
   $QuizCopyWith<$Res>? get quiz;
@@ -123,16 +123,16 @@ class __$SelectedQuizProgressCopyWithImpl<$Res>
   @override
   $Res call({
     Object? quiz = freezed,
-    Object? currentChapterOrder = freezed,
+    Object? currentChapterIndex = freezed,
   }) {
     return _then(_SelectedQuizProgress(
       quiz: quiz == freezed
           ? _value.quiz
           : quiz // ignore: cast_nullable_to_non_nullable
               as Quiz?,
-      currentChapterOrder: currentChapterOrder == freezed
-          ? _value.currentChapterOrder
-          : currentChapterOrder // ignore: cast_nullable_to_non_nullable
+      currentChapterIndex: currentChapterIndex == freezed
+          ? _value.currentChapterIndex
+          : currentChapterIndex // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -141,7 +141,7 @@ class __$SelectedQuizProgressCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SelectedQuizProgress extends _SelectedQuizProgress {
-  _$_SelectedQuizProgress({this.quiz, this.currentChapterOrder}) : super._();
+  _$_SelectedQuizProgress({this.quiz, this.currentChapterIndex}) : super._();
 
   factory _$_SelectedQuizProgress.fromJson(Map<String, dynamic> json) =>
       _$$_SelectedQuizProgressFromJson(json);
@@ -149,11 +149,11 @@ class _$_SelectedQuizProgress extends _SelectedQuizProgress {
   @override
   final Quiz? quiz;
   @override
-  final int? currentChapterOrder;
+  final int? currentChapterIndex;
 
   @override
   String toString() {
-    return 'SelectedQuizProgress(quiz: $quiz, currentChapterOrder: $currentChapterOrder)';
+    return 'SelectedQuizProgress(quiz: $quiz, currentChapterIndex: $currentChapterIndex)';
   }
 
   @override
@@ -163,14 +163,14 @@ class _$_SelectedQuizProgress extends _SelectedQuizProgress {
             other is _SelectedQuizProgress &&
             const DeepCollectionEquality().equals(other.quiz, quiz) &&
             const DeepCollectionEquality()
-                .equals(other.currentChapterOrder, currentChapterOrder));
+                .equals(other.currentChapterIndex, currentChapterIndex));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(quiz),
-      const DeepCollectionEquality().hash(currentChapterOrder));
+      const DeepCollectionEquality().hash(currentChapterIndex));
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +185,7 @@ class _$_SelectedQuizProgress extends _SelectedQuizProgress {
 }
 
 abstract class _SelectedQuizProgress extends SelectedQuizProgress {
-  factory _SelectedQuizProgress({Quiz? quiz, int? currentChapterOrder}) =
+  factory _SelectedQuizProgress({Quiz? quiz, int? currentChapterIndex}) =
       _$_SelectedQuizProgress;
   _SelectedQuizProgress._() : super._();
 
@@ -195,7 +195,7 @@ abstract class _SelectedQuizProgress extends SelectedQuizProgress {
   @override
   Quiz? get quiz;
   @override
-  int? get currentChapterOrder;
+  int? get currentChapterIndex;
   @override
   @JsonKey(ignore: true)
   _$SelectedQuizProgressCopyWith<_SelectedQuizProgress> get copyWith =>

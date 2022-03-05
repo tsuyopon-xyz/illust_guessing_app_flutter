@@ -12,12 +12,12 @@ _$_SelectedQuizProgress _$$_SelectedQuizProgressFromJson(
       quiz: json['quiz'] == null
           ? null
           : Quiz.fromJson(json['quiz'] as Map<String, dynamic>),
-      currentChapterOrder: json['currentChapterOrder'] as int?,
+      currentChapterIndex: json['currentChapterIndex'] as int?,
     );
 
 Map<String, dynamic> _$$_SelectedQuizProgressToJson(
         _$_SelectedQuizProgress instance) =>
     <String, dynamic>{
       'quiz': instance.quiz,
-      'currentChapterOrder': instance.currentChapterOrder,
+      'currentChapterIndex': instance.currentChapterIndex,
     };
