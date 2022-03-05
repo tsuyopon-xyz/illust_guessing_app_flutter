@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:illust_guessing_app/src/providers/selected_quiz_progress_provider.dart';
 
 import '../providers/quiz_list_provider.dart' show quizListProvider;
 import '../models/quiz.dart' show Quiz;
@@ -21,13 +22,13 @@ class QuizSelectView extends ConsumerWidget {
   }
 }
 
-class _QuizListView extends StatelessWidget {
+class _QuizListView extends ConsumerWidget {
   const _QuizListView({Key? key, required this.quizList}) : super(key: key);
 
   final List<Quiz> quizList;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView.separated(
       itemCount: quizList.length,
       itemBuilder: (BuildContext context, int index) {
@@ -43,7 +44,18 @@ class _QuizListView extends StatelessWidget {
             contentPadding: const EdgeInsets.all(8),
             enabled: !isLocked,
             onTap: () {
-              print(index);
+              final sqp = ref.read(selectedQuizProgressProvider.notifier);
+              final _quiz = sqp.state.quiz;
+
+              if (_quiz == null) {
+                print("Quizセットします");
+                sqp.selectQuiz(quiz);
+              } else if (sqp.hasNextChapter()) {
+                print("次のチャプターに移動");
+                sqp.goToNextChapter();
+              } else {
+                print("チャプター終わってます");
+              }
             },
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,
