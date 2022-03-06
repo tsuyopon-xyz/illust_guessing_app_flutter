@@ -6,7 +6,7 @@ Future<void> main() async {
 
   test('QuizRepository#fetchQuizList returns List<Quiz>.', () async {
     final repository = QuizRepository();
-    var quizList = await repository.fetchQuizList();
+    var quizList = await repository.findAll();
 
     expect(quizList.isNotEmpty, equals(true));
     expect(quizList[0].id, equals(1));

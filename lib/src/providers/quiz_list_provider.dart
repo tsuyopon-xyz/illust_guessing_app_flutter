@@ -4,7 +4,7 @@ import '../repositories/quiz_repository.dart';
 
 final quizListProvider = FutureProvider<List<Quiz>>((ref) async {
   final repository = QuizRepository();
-  final quizList = await repository.fetchQuizList();
+  final quizList = await repository.findAll();
 
   return quizList;
 });
