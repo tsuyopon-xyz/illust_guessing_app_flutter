@@ -16,22 +16,22 @@ class QuizSelectView extends ConsumerWidget {
     var quizStatusList = ref.watch(quizStatusListProvider);
 
     return asyncValue.when(data: (List<Quiz> quizList) {
-      // 一番最初のアプリ起動時はSharedPreferencesに保存されていないあめ、
-      if (quizStatusList.isEmpty) {
-        // TODO: 初期化処理をアプリ読み込み時に行う
-        var newQuizStatusList = quizList.asMap().entries.map((entry) {
-          int index = entry.key;
-          var quiz = entry.value;
+      // // 一番最初のアプリ起動時はSharedPreferencesに保存されていないあめ、
+      // if (quizStatusList.isEmpty) {
+      //   // TODO: 初期化処理をアプリ読み込み時に行う
+      //   var newQuizStatusList = quizList.asMap().entries.map((entry) {
+      //     int index = entry.key;
+      //     var quiz = entry.value;
 
-          // 最初のステージはオープンにしておく
-          return QuizStatus(quizId: quiz.id, isLocked: index != 0);
-        }).toList();
+      //     // 最初のステージはオープンにしておく
+      //     return QuizStatus(quizId: quiz.id, isLocked: index != 0);
+      //   }).toList();
 
-        final notifier = ref.read(quizStatusListProvider.notifier);
-        notifier.save(newQuizStatusList);
+      //   final notifier = ref.read(quizStatusListProvider.notifier);
+      //   notifier.save(newQuizStatusList);
 
-        return const Center(child: Text('No QuizStatusList'));
-      }
+      //   return const Center(child: Text('No QuizStatusList'));
+      // }
 
       // テスト用 : ローカル保存したデータを削除
       // if (quizStatusList.isNotEmpty) {

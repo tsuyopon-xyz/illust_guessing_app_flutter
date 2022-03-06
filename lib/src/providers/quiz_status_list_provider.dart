@@ -4,8 +4,8 @@ import '../models/quiz_status.dart' show QuizStatus;
 import '../repositories/quiz_status_repository.dart' show QuizStatusRepository;
 import '../utils/quiz_status_list_manager.dart' show QuizStatusListManager;
 
-final quizStatusListProvider =
-    StateNotifierProvider<_QuizStatusListNotifier, List<QuizStatus>>((_) {
+final quizStatusListProvider = StateNotifierProvider.autoDispose<
+    _QuizStatusListNotifier, List<QuizStatus>>((_) {
   return _QuizStatusListNotifier();
 });
 
