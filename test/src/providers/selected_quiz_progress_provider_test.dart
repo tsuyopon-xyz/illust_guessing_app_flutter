@@ -57,6 +57,9 @@ void main() {
       if (index < lastIndex) {
         expect(hasNext, true);
         notifier.goToNextChapter();
+        int currentChapterIndex = notifier.getCurrentChapterIndex();
+        expect(currentChapterIndex, index + 1);
+
         verify(listener(
                 SelectedQuizProgress(quiz: _quiz, currentChapterIndex: index),
                 SelectedQuizProgress(
@@ -65,6 +68,9 @@ void main() {
       } else {
         expect(hasNext, false);
         notifier.goToNextChapter();
+        int currentChapterIndex = notifier.getCurrentChapterIndex();
+        expect(currentChapterIndex, lastIndex);
+
         verifyNever(listener(
             SelectedQuizProgress(quiz: _quiz, currentChapterIndex: index),
             SelectedQuizProgress(quiz: _quiz, currentChapterIndex: index + 1)));

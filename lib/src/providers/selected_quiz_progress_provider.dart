@@ -27,6 +27,10 @@ class _SelectedQuizProgressNotifier
     int newChapterIndex = oldChapterIndex + 1;
     state = state.copyWith(currentChapterIndex: newChapterIndex);
   }
+
+  int getCurrentChapterIndex() {
+    return state.currentChapterIndex!;
+  }
 }
 
 // 最後に TodosNotifier のインスタンスを値に持つ StateNotifierProvider を作成し、
