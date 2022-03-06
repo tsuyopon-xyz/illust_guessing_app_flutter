@@ -5,7 +5,7 @@ import '../models/quiz_status.dart';
 class QuizStatusListManager {
   static const _prefKey = 'quiz_status_list_manager';
 
-  static Future<List<QuizStatus>> load() async {
+  Future<List<QuizStatus>> load() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       String jsonString = prefs.getString(_prefKey);
@@ -25,7 +25,7 @@ class QuizStatusListManager {
     }
   }
 
-  static Future<bool> save(List<QuizStatus> quizStatusList) async {
+  Future<bool> save(List<QuizStatus> quizStatusList) async {
     String jsonString = json.encode(quizStatusList);
     final prefs = await SharedPreferences.getInstance();
     bool isSaved = await prefs.setString(_prefKey, jsonString);
@@ -33,7 +33,7 @@ class QuizStatusListManager {
     return isSaved;
   }
 
-  static Future<bool> delete() async {
+  Future<bool> delete() async {
     final prefs = await SharedPreferences.getInstance();
 
     return await prefs.remove(_prefKey);
