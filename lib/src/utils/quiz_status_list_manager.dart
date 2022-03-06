@@ -8,7 +8,11 @@ class QuizStatusListManager {
   Future<List<QuizStatus>> load() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      String jsonString = prefs.getString(_prefKey);
+      String? jsonString = prefs.getString(_prefKey);
+      if (jsonString == null) {
+        return [];
+      }
+
       List<dynamic> decodedJson = json.decode(jsonString);
       List<QuizStatus> quizStatusList = decodedJson.map((dynamicMap) {
         Map<String, dynamic> castMap = {};

@@ -20,6 +20,7 @@ class MyApp extends ConsumerWidget {
     int currentChapterIndex = sqp.currentChapterIndex ?? -1;
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'イラスト推理($currentChapterIndex)',
       home: Scaffold(
         appBar: AppBar(
