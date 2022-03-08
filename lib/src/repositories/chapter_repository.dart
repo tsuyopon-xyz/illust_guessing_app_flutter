@@ -55,9 +55,30 @@ class ChapterRepository implements IRepository<Chapter> {
 
   @override
   Future<List<Chapter>> findWhere(
-      {required String where, bool includes = false}) {
-    // TODO: implement findWhere
-    throw UnimplementedError();
+      {required String where, bool includes = false}) async {
+    if (includes) {
+      var chapterRecords = await db.query(chaptersTableName, where: where);
+      var quizIds =
+          chapterRecords.map((record) => record['quiz_id']).toSet().toList();
+      var quizRecords = await db.query(quizzesTableName,
+          where: 'id IN (${List.filled(quizIds.length, '?').join(',')})',
+          whereArgs: quizIds);
+
+      var chapters = chapterRecords.map((record) {
+        var chapter = Chapter.fromJson(record);
+        var quizRecord =
+            quizRecords.firstWhere((record) => record['id'] == chapter.quizId);
+        var quiz = QuizV2.fromJson(quizRecord);
+
+        return chapter.copyWith(quiz: quiz);
+      }).toList();
+
+      return chapters;
+    } else {
+      var records = await db.query(chaptersTableName, where: where);
+
+      return records.map((record) => Chapter.fromJson(record)).toList();
+    }
   }
 
   @override
