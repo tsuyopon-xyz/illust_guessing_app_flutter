@@ -83,19 +83,19 @@ const String _createQueryString = '''
   );
 
   CREATE TABLE IF NOT EXISTS completed_quizzes(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
     quiz_id INTEGER NOT NULL,
     created_at TEXT NOT NULL DEFAULT (DATETIME('now', 'localtime')),
 
+    PRIMARY KEY (quiz_id),
     FOREIGN KEY (quiz_id) references quizzes(id)
   );
 
   CREATE TABLE IF NOT EXISTS completed_chapters(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
     quiz_id INTEGER NOT NULL,
     chapter_id INTEGER NOT NULL,
     created_at TEXT NOT NULL DEFAULT (DATETIME('now', 'localtime')),
 
+    PRIMARY KEY (quiz_id, chapter_id),
     FOREIGN KEY (quiz_id) references quizzes(id),
     FOREIGN KEY (chapter_id) references chapters(id)
   );
