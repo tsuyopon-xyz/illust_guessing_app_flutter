@@ -22,9 +22,27 @@ class ChapterRepository implements IRepository<Chapter> {
   }
 
   @override
-  Future<Chapter> find({required int id, bool includes = false}) {
-    // TODO: implement find
-    throw UnimplementedError();
+  Future<Chapter?> find({required int id, bool includes = false}) async {
+    var records = await db.query(chaptersTableName,
+        where: "id=?", whereArgs: [id], limit: 1);
+
+    if (records.isEmpty) {
+      return null;
+    }
+
+    if (includes) {
+      var chapterRecord = records[0];
+      var quizId = chapterRecord['quiz_id'];
+      var quizRecords =
+          await db.query(quizzesTableName, where: 'id=?', whereArgs: [quizId]);
+
+      var quiz = QuizV2.fromJson(quizRecords[0]);
+      var chapter = Chapter.fromJson(chapterRecord);
+
+      return chapter.copyWith(quiz: quiz);
+    } else {
+      return Chapter.fromJson(records[0]);
+    }
   }
 
   @override

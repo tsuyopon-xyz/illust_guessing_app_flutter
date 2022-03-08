@@ -18,7 +18,8 @@ Future<void> main() async {
   });
 
   group('The findAll method', () {
-    test('ChapterRepository#findAll without includes returns List<Chapter>.',
+    test(
+        'ChapterRepository#findAll without includes returns List<Chapter> without Quiz.',
         () async {
       final repository = ChapterRepository(db: db);
       var chapterList = await repository.findAll();
@@ -31,7 +32,8 @@ Future<void> main() async {
       });
     });
 
-    test('ChapterRepository#findAll with includes returns List<Chapter>.',
+    test(
+        'ChapterRepository#findAll with includes returns List<Chapter> with Quiz.',
         () async {
       final repository = ChapterRepository(db: db);
       var chapterList = await repository.findAll(includes: true);
@@ -47,7 +49,8 @@ Future<void> main() async {
   });
 
   group('The findWhere method', () {
-    test('ChapterRepository#findWhere without includes returns List<Chapter>.',
+    test(
+        'ChapterRepository#findWhere without includes returns List<Chapter> without Quiz.',
         () async {
       final repository = ChapterRepository(db: db);
       const targetQuizId = 1;
@@ -61,7 +64,8 @@ Future<void> main() async {
       });
     });
 
-    test('ChapterRepository#findWhere with includes returns List<Chapter>.',
+    test(
+        'ChapterRepository#findWhere with includes returns List<Chapter> with Quiz.',
         () async {
       final repository = ChapterRepository(db: db);
       const targetQuizId = 1;
@@ -74,6 +78,39 @@ Future<void> main() async {
         expect(chapter.quiz, isNotNull);
         expect(chapter.quiz?.id, targetQuizId);
       });
+    });
+  });
+
+  group('The find method', () {
+    test('ChapterRepository#find with unexisted id returns null.', () async {
+      final repository = ChapterRepository(db: db);
+      const targetChapterId = -1;
+      var chapter = await repository.find(id: targetChapterId);
+
+      expect(chapter, null);
+    });
+
+    test(
+        'ChapterRepository#find without includes returns List<Chapter> without Quiz.',
+        () async {
+      final repository = ChapterRepository(db: db);
+      const targetChapterId = 1;
+      var chapter = await repository.find(id: targetChapterId);
+
+      expect(chapter?.id, targetChapterId);
+      expect(chapter?.quiz, null);
+    });
+
+    test(
+        'ChapterRepository#find with includes returns List<Chapter> with Quiz.',
+        () async {
+      final repository = ChapterRepository(db: db);
+      const targetChapterId = 1;
+      var chapter = await repository.find(id: targetChapterId, includes: true);
+
+      expect(chapter?.id, targetChapterId);
+      expect(chapter?.quiz, isNotNull);
+      expect(chapter?.quizId, chapter?.quiz?.id);
     });
   });
 }
