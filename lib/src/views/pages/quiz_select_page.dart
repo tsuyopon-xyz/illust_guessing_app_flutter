@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:illust_guessing_app/src/providers/quiz_list_provider_v2.dart'
     show quizListProviderV2;
 import 'package:illust_guessing_app/src/models/quiz_v2.dart' show QuizV2;
 import 'package:illust_guessing_app/src/views/widgets/common/loading_indicator.dart'
     show LoadingIndicator;
+import 'package:illust_guessing_app/src/views/widgets/common/wrap_scaffold.dart'
+    show WrapScaffold;
 
 class QuizSelectPage extends ConsumerWidget {
   const QuizSelectPage({Key? key}) : super(key: key);
@@ -13,12 +16,15 @@ class QuizSelectPage extends ConsumerWidget {
     AsyncValue<List<QuizV2>> asyncValue = ref.watch(quizListProviderV2);
 
     return asyncValue.when(data: (List<QuizV2> quizList) {
-      return _QuizListView(quizList: quizList);
+      return WrapScaffold(
+          title: 'クイズ選択ページ', body: _QuizListView(quizList: quizList));
     }, error: (error, stack) {
       print(error);
-      return const Center(child: Text('Error...'));
+      return const WrapScaffold(
+          title: 'クイズ選択ページ', body: Center(child: Text('Error...')));
     }, loading: () {
-      return const Center(child: LoadingIndicator());
+      return const WrapScaffold(
+          title: 'クイズ選択ページ', body: Center(child: LoadingIndicator()));
     });
   }
 }
@@ -45,7 +51,7 @@ class _QuizListView extends StatelessWidget {
             contentPadding: const EdgeInsets.all(8),
             enabled: true,
             onTap: () {
-              print("quizページへ移動（quiz情報を引き渡す）");
+              GoRouter.of(context).push('/quiz/${quiz.id}');
             },
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,
