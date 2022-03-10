@@ -13,6 +13,7 @@ class Chapter with _$Chapter {
       required String hint,
       required String question,
       required String comment,
+      @JsonKey(name: 'image_path') required String imagePath,
       @JsonKey(name: 'correct_area_x') required int correctAreaX,
       @JsonKey(name: 'correct_area_y') required int correctAreaY,
       @JsonKey(name: 'correct_area_width') required int correctAreaWidth,

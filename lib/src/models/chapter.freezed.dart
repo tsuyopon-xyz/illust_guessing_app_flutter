@@ -29,6 +29,7 @@ class _$ChapterTearOff {
       required String hint,
       required String question,
       required String comment,
+      @JsonKey(name: 'image_path') required String imagePath,
       @JsonKey(name: 'correct_area_x') required int correctAreaX,
       @JsonKey(name: 'correct_area_y') required int correctAreaY,
       @JsonKey(name: 'correct_area_width') required int correctAreaWidth,
@@ -41,6 +42,7 @@ class _$ChapterTearOff {
       hint: hint,
       question: question,
       comment: comment,
+      imagePath: imagePath,
       correctAreaX: correctAreaX,
       correctAreaY: correctAreaY,
       correctAreaWidth: correctAreaWidth,
@@ -67,6 +69,8 @@ mixin _$Chapter {
   String get hint => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_path')
+  String get imagePath => throw _privateConstructorUsedError;
   @JsonKey(name: 'correct_area_x')
   int get correctAreaX => throw _privateConstructorUsedError;
   @JsonKey(name: 'correct_area_y')
@@ -93,6 +97,7 @@ abstract class $ChapterCopyWith<$Res> {
       String hint,
       String question,
       String comment,
+      @JsonKey(name: 'image_path') String imagePath,
       @JsonKey(name: 'correct_area_x') int correctAreaX,
       @JsonKey(name: 'correct_area_y') int correctAreaY,
       @JsonKey(name: 'correct_area_width') int correctAreaWidth,
@@ -118,6 +123,7 @@ class _$ChapterCopyWithImpl<$Res> implements $ChapterCopyWith<$Res> {
     Object? hint = freezed,
     Object? question = freezed,
     Object? comment = freezed,
+    Object? imagePath = freezed,
     Object? correctAreaX = freezed,
     Object? correctAreaY = freezed,
     Object? correctAreaWidth = freezed,
@@ -148,6 +154,10 @@ class _$ChapterCopyWithImpl<$Res> implements $ChapterCopyWith<$Res> {
       comment: comment == freezed
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
       correctAreaX: correctAreaX == freezed
           ? _value.correctAreaX
@@ -196,6 +206,7 @@ abstract class _$ChapterCopyWith<$Res> implements $ChapterCopyWith<$Res> {
       String hint,
       String question,
       String comment,
+      @JsonKey(name: 'image_path') String imagePath,
       @JsonKey(name: 'correct_area_x') int correctAreaX,
       @JsonKey(name: 'correct_area_y') int correctAreaY,
       @JsonKey(name: 'correct_area_width') int correctAreaWidth,
@@ -223,6 +234,7 @@ class __$ChapterCopyWithImpl<$Res> extends _$ChapterCopyWithImpl<$Res>
     Object? hint = freezed,
     Object? question = freezed,
     Object? comment = freezed,
+    Object? imagePath = freezed,
     Object? correctAreaX = freezed,
     Object? correctAreaY = freezed,
     Object? correctAreaWidth = freezed,
@@ -253,6 +265,10 @@ class __$ChapterCopyWithImpl<$Res> extends _$ChapterCopyWithImpl<$Res>
       comment: comment == freezed
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
       correctAreaX: correctAreaX == freezed
           ? _value.correctAreaX
@@ -288,6 +304,7 @@ class _$_Chapter implements _Chapter {
       required this.hint,
       required this.question,
       required this.comment,
+      @JsonKey(name: 'image_path') required this.imagePath,
       @JsonKey(name: 'correct_area_x') required this.correctAreaX,
       @JsonKey(name: 'correct_area_y') required this.correctAreaY,
       @JsonKey(name: 'correct_area_width') required this.correctAreaWidth,
@@ -312,6 +329,9 @@ class _$_Chapter implements _Chapter {
   @override
   final String comment;
   @override
+  @JsonKey(name: 'image_path')
+  final String imagePath;
+  @override
   @JsonKey(name: 'correct_area_x')
   final int correctAreaX;
   @override
@@ -328,7 +348,7 @@ class _$_Chapter implements _Chapter {
 
   @override
   String toString() {
-    return 'Chapter(id: $id, quizId: $quizId, sortOrder: $sortOrder, hint: $hint, question: $question, comment: $comment, correctAreaX: $correctAreaX, correctAreaY: $correctAreaY, correctAreaWidth: $correctAreaWidth, correctAreaHeight: $correctAreaHeight, quiz: $quiz)';
+    return 'Chapter(id: $id, quizId: $quizId, sortOrder: $sortOrder, hint: $hint, question: $question, comment: $comment, imagePath: $imagePath, correctAreaX: $correctAreaX, correctAreaY: $correctAreaY, correctAreaWidth: $correctAreaWidth, correctAreaHeight: $correctAreaHeight, quiz: $quiz)';
   }
 
   @override
@@ -342,6 +362,7 @@ class _$_Chapter implements _Chapter {
             const DeepCollectionEquality().equals(other.hint, hint) &&
             const DeepCollectionEquality().equals(other.question, question) &&
             const DeepCollectionEquality().equals(other.comment, comment) &&
+            const DeepCollectionEquality().equals(other.imagePath, imagePath) &&
             const DeepCollectionEquality()
                 .equals(other.correctAreaX, correctAreaX) &&
             const DeepCollectionEquality()
@@ -362,6 +383,7 @@ class _$_Chapter implements _Chapter {
       const DeepCollectionEquality().hash(hint),
       const DeepCollectionEquality().hash(question),
       const DeepCollectionEquality().hash(comment),
+      const DeepCollectionEquality().hash(imagePath),
       const DeepCollectionEquality().hash(correctAreaX),
       const DeepCollectionEquality().hash(correctAreaY),
       const DeepCollectionEquality().hash(correctAreaWidth),
@@ -387,6 +409,7 @@ abstract class _Chapter implements Chapter {
       required String hint,
       required String question,
       required String comment,
+      @JsonKey(name: 'image_path') required String imagePath,
       @JsonKey(name: 'correct_area_x') required int correctAreaX,
       @JsonKey(name: 'correct_area_y') required int correctAreaY,
       @JsonKey(name: 'correct_area_width') required int correctAreaWidth,
@@ -409,6 +432,9 @@ abstract class _Chapter implements Chapter {
   String get question;
   @override
   String get comment;
+  @override
+  @JsonKey(name: 'image_path')
+  String get imagePath;
   @override
   @JsonKey(name: 'correct_area_x')
   int get correctAreaX;

@@ -174,17 +174,17 @@ const String _insertChaptersString = '''
     ),
     (
       6, 2, 2, 'なんでのヒント2',
-      'なんでの問題文2', 'なんでのコメント2', 'assets/images/quizzes/3',
+      'なんでの問題文2', 'なんでのコメント2', 'assets/images/quizzes/2',
       30, 20, 100, 150
     ),
     (
       7, 2, 3, 'なんでのヒント3',
-      'なんでの問題文3', 'なんでのコメント3', 'assets/images/quizzes/4',
+      'なんでの問題文3', 'なんでのコメント3', 'assets/images/quizzes/2',
       70, 30, 80, 100
     ),
     (
       8, 2, 4, 'なんでのヒント4',
-      'なんでの問題文4', 'なんでのコメント4', 'assets/images/quizzes/5',
+      'なんでの問題文4', 'なんでのコメント4', 'assets/images/quizzes/2',
       90, 40, 80, 80
     );
 ''';
