@@ -8,14 +8,21 @@ class QuizStatusRepository implements IRepository<QuizStatus> {
   QuizStatusRepository(this._quizStatusListManager);
 
   @override
-  Future<QuizStatus> find() {
+  Future<QuizStatus?> find({required int id, bool includes = false}) {
     // TODO: implement find
     throw UnimplementedError();
   }
 
   @override
-  Future<List<QuizStatus>> findAll() async {
+  Future<List<QuizStatus>> findAll({bool includes = false}) async {
     return await _quizStatusListManager.load();
+  }
+
+  @override
+  Future<List<QuizStatus>> findWhere(
+      {required String where, bool includes = false}) {
+    // TODO: implement findWhere
+    throw UnimplementedError();
   }
 
   @override

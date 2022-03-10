@@ -7,30 +7,24 @@ import '../models/quiz.dart';
 
 class QuizRepository implements IRepository<Quiz> {
   @override
-  Future<bool> delete(Quiz data) {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<bool> deleteAll() {
-    // TODO: implement deleteAll
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Quiz> find() {
+  Future<Quiz?> find({required int id, bool includes = false}) {
     // TODO: implement find
     throw UnimplementedError();
   }
 
   @override
-  Future<List<Quiz>> findAll() async {
+  Future<List<Quiz>> findAll({bool includes = false}) async {
     final jsonLoader = JsonLoader();
     var jsonString = await jsonLoader.loadQuizzes();
     var decodedJson = json.decode(jsonString) as List<dynamic>;
 
     return decodedJson.map((q) => Quiz.fromJson(q)).toList();
+  }
+
+  @override
+  Future<List<Quiz>> findWhere({required String where, bool includes = false}) {
+    // TODO: implement findWhere
+    throw UnimplementedError();
   }
 
   @override
@@ -42,6 +36,18 @@ class QuizRepository implements IRepository<Quiz> {
   @override
   Future<bool> saveAll(List<Quiz> dataList) {
     // TODO: implement saveAll
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> delete(Quiz data) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> deleteAll() {
+    // TODO: implement deleteAll
     throw UnimplementedError();
   }
 }
