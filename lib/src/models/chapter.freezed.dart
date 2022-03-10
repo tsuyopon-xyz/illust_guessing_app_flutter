@@ -27,6 +27,7 @@ class _$ChapterTearOff {
       @JsonKey(name: 'quiz_id') required int quizId,
       @JsonKey(name: 'sort_order') required int sortOrder,
       required String hint,
+      required String question,
       required String comment,
       @JsonKey(name: 'correct_area_x') required int correctAreaX,
       @JsonKey(name: 'correct_area_y') required int correctAreaY,
@@ -38,6 +39,7 @@ class _$ChapterTearOff {
       quizId: quizId,
       sortOrder: sortOrder,
       hint: hint,
+      question: question,
       comment: comment,
       correctAreaX: correctAreaX,
       correctAreaY: correctAreaY,
@@ -63,6 +65,7 @@ mixin _$Chapter {
   @JsonKey(name: 'sort_order')
   int get sortOrder => throw _privateConstructorUsedError;
   String get hint => throw _privateConstructorUsedError;
+  String get question => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
   @JsonKey(name: 'correct_area_x')
   int get correctAreaX => throw _privateConstructorUsedError;
@@ -88,6 +91,7 @@ abstract class $ChapterCopyWith<$Res> {
       @JsonKey(name: 'quiz_id') int quizId,
       @JsonKey(name: 'sort_order') int sortOrder,
       String hint,
+      String question,
       String comment,
       @JsonKey(name: 'correct_area_x') int correctAreaX,
       @JsonKey(name: 'correct_area_y') int correctAreaY,
@@ -112,6 +116,7 @@ class _$ChapterCopyWithImpl<$Res> implements $ChapterCopyWith<$Res> {
     Object? quizId = freezed,
     Object? sortOrder = freezed,
     Object? hint = freezed,
+    Object? question = freezed,
     Object? comment = freezed,
     Object? correctAreaX = freezed,
     Object? correctAreaY = freezed,
@@ -135,6 +140,10 @@ class _$ChapterCopyWithImpl<$Res> implements $ChapterCopyWith<$Res> {
       hint: hint == freezed
           ? _value.hint
           : hint // ignore: cast_nullable_to_non_nullable
+              as String,
+      question: question == freezed
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
               as String,
       comment: comment == freezed
           ? _value.comment
@@ -185,6 +194,7 @@ abstract class _$ChapterCopyWith<$Res> implements $ChapterCopyWith<$Res> {
       @JsonKey(name: 'quiz_id') int quizId,
       @JsonKey(name: 'sort_order') int sortOrder,
       String hint,
+      String question,
       String comment,
       @JsonKey(name: 'correct_area_x') int correctAreaX,
       @JsonKey(name: 'correct_area_y') int correctAreaY,
@@ -211,6 +221,7 @@ class __$ChapterCopyWithImpl<$Res> extends _$ChapterCopyWithImpl<$Res>
     Object? quizId = freezed,
     Object? sortOrder = freezed,
     Object? hint = freezed,
+    Object? question = freezed,
     Object? comment = freezed,
     Object? correctAreaX = freezed,
     Object? correctAreaY = freezed,
@@ -234,6 +245,10 @@ class __$ChapterCopyWithImpl<$Res> extends _$ChapterCopyWithImpl<$Res>
       hint: hint == freezed
           ? _value.hint
           : hint // ignore: cast_nullable_to_non_nullable
+              as String,
+      question: question == freezed
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
               as String,
       comment: comment == freezed
           ? _value.comment
@@ -271,6 +286,7 @@ class _$_Chapter implements _Chapter {
       @JsonKey(name: 'quiz_id') required this.quizId,
       @JsonKey(name: 'sort_order') required this.sortOrder,
       required this.hint,
+      required this.question,
       required this.comment,
       @JsonKey(name: 'correct_area_x') required this.correctAreaX,
       @JsonKey(name: 'correct_area_y') required this.correctAreaY,
@@ -292,6 +308,8 @@ class _$_Chapter implements _Chapter {
   @override
   final String hint;
   @override
+  final String question;
+  @override
   final String comment;
   @override
   @JsonKey(name: 'correct_area_x')
@@ -310,7 +328,7 @@ class _$_Chapter implements _Chapter {
 
   @override
   String toString() {
-    return 'Chapter(id: $id, quizId: $quizId, sortOrder: $sortOrder, hint: $hint, comment: $comment, correctAreaX: $correctAreaX, correctAreaY: $correctAreaY, correctAreaWidth: $correctAreaWidth, correctAreaHeight: $correctAreaHeight, quiz: $quiz)';
+    return 'Chapter(id: $id, quizId: $quizId, sortOrder: $sortOrder, hint: $hint, question: $question, comment: $comment, correctAreaX: $correctAreaX, correctAreaY: $correctAreaY, correctAreaWidth: $correctAreaWidth, correctAreaHeight: $correctAreaHeight, quiz: $quiz)';
   }
 
   @override
@@ -322,6 +340,7 @@ class _$_Chapter implements _Chapter {
             const DeepCollectionEquality().equals(other.quizId, quizId) &&
             const DeepCollectionEquality().equals(other.sortOrder, sortOrder) &&
             const DeepCollectionEquality().equals(other.hint, hint) &&
+            const DeepCollectionEquality().equals(other.question, question) &&
             const DeepCollectionEquality().equals(other.comment, comment) &&
             const DeepCollectionEquality()
                 .equals(other.correctAreaX, correctAreaX) &&
@@ -341,6 +360,7 @@ class _$_Chapter implements _Chapter {
       const DeepCollectionEquality().hash(quizId),
       const DeepCollectionEquality().hash(sortOrder),
       const DeepCollectionEquality().hash(hint),
+      const DeepCollectionEquality().hash(question),
       const DeepCollectionEquality().hash(comment),
       const DeepCollectionEquality().hash(correctAreaX),
       const DeepCollectionEquality().hash(correctAreaY),
@@ -365,6 +385,7 @@ abstract class _Chapter implements Chapter {
       @JsonKey(name: 'quiz_id') required int quizId,
       @JsonKey(name: 'sort_order') required int sortOrder,
       required String hint,
+      required String question,
       required String comment,
       @JsonKey(name: 'correct_area_x') required int correctAreaX,
       @JsonKey(name: 'correct_area_y') required int correctAreaY,
@@ -384,6 +405,8 @@ abstract class _Chapter implements Chapter {
   int get sortOrder;
   @override
   String get hint;
+  @override
+  String get question;
   @override
   String get comment;
   @override

@@ -11,6 +11,7 @@ class Chapter with _$Chapter {
       @JsonKey(name: 'quiz_id') required int quizId,
       @JsonKey(name: 'sort_order') required int sortOrder,
       required String hint,
+      required String question,
       required String comment,
       @JsonKey(name: 'correct_area_x') required int correctAreaX,
       @JsonKey(name: 'correct_area_y') required int correctAreaY,
