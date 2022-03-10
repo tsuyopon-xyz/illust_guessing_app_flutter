@@ -51,7 +51,7 @@ class _QuizListView extends StatelessWidget {
             contentPadding: const EdgeInsets.all(8),
             enabled: true,
             onTap: () {
-              GoRouter.of(context).push('/quiz/${quiz.id}');
+              context.pushNamed('quiz', params: {'quizId': quiz.id.toString()});
             },
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -16,7 +16,7 @@ class WrapScaffold extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  GoRouter.of(context).push('/settings');
+                  context.pushNamed('settings');
                 },
                 icon: const Icon(Icons.settings))
           ],

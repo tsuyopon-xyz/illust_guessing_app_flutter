@@ -47,6 +47,7 @@ final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
+      name: 'quiz-select',
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
@@ -56,6 +57,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/quiz/:quizId',
+      name: 'quiz',
       pageBuilder: (context, state) {
         int quizId = int.parse(state.params['quizId'] as String);
 
@@ -65,6 +67,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/settings',
+      name: 'settings',
       pageBuilder: (context, state) {
         return MaterialPage(key: state.pageKey, child: const SettingPage());
       },
