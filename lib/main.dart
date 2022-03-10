@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:illust_guessing_app/src/models/selected_quiz_progress.dart';
 import 'package:illust_guessing_app/src/providers/selected_quiz_progress_provider.dart';
 
-import 'src/views/quiz_select_view.dart';
+import 'src/views/pages/quiz_select_page.dart' show QuizSelectPage;
 
 // アプリ起動時
 // 1. クイズステータスリストを読み込む
@@ -41,7 +41,7 @@ class MyApp extends ConsumerWidget {
         appBar: AppBar(
           title: Text('イラスト推理($currentChapterIndex)'),
         ),
-        body: const QuizSelectView(),
+        body: const QuizSelectPage(),
       ),
     );
   }
