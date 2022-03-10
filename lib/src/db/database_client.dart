@@ -149,42 +149,42 @@ const String _insertChaptersString = '''
   VALUES
     (
       1, 1, 1, 'まさかのヒント1',
-      'まさかの問題文1', 'まさかのコメント1', 'assets/images/quizzes/1',
+      'まさかの問題文1', 'まさかのコメント1', 'assets/images/quizzes/1.png',
       10, 10, 100, 100
     ),
     (
       2, 1, 2, 'まさかのヒント2',
-      'まさかの問題文2', 'まさかのコメント2', 'assets/images/quizzes/1',
+      'まさかの問題文2', 'まさかのコメント2', 'assets/images/quizzes/1.png',
       30, 20, 100, 150
     ),
     (
       3, 1, 3, 'まさかのヒント3',
-      'まさかの問題文3', 'まさかのコメント3', 'assets/images/quizzes/1',
+      'まさかの問題文3', 'まさかのコメント3', 'assets/images/quizzes/1.png',
       70, 30, 80, 100
     ),
     (
       4, 1, 4, 'まさかのヒント4',
-      'まさかの問題文4', 'まさかのコメント4', 'assets/images/quizzes/1',
+      'まさかの問題文4', 'まさかのコメント4', 'assets/images/quizzes/1.png',
       90, 40, 80, 80
     ),
     (
       5, 2, 1, 'なんでのヒント1',
-      'なんでの問題文1', 'なんでのコメント1', 'assets/images/quizzes/2',
+      'なんでの問題文1', 'なんでのコメント1', 'assets/images/quizzes/2.png',
       10, 10, 100, 100
     ),
     (
       6, 2, 2, 'なんでのヒント2',
-      'なんでの問題文2', 'なんでのコメント2', 'assets/images/quizzes/2',
+      'なんでの問題文2', 'なんでのコメント2', 'assets/images/quizzes/2.png',
       30, 20, 100, 150
     ),
     (
       7, 2, 3, 'なんでのヒント3',
-      'なんでの問題文3', 'なんでのコメント3', 'assets/images/quizzes/2',
+      'なんでの問題文3', 'なんでのコメント3', 'assets/images/quizzes/2.png',
       70, 30, 80, 100
     ),
     (
       8, 2, 4, 'なんでのヒント4',
-      'なんでの問題文4', 'なんでのコメント4', 'assets/images/quizzes/2',
+      'なんでの問題文4', 'なんでのコメント4', 'assets/images/quizzes/2.png',
       90, 40, 80, 80
     );
 ''';
