@@ -1,9 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:illust_guessing_app/src/models/chapter.dart';
 import 'package:sqflite/sqflite.dart' show Database;
+import 'package:illust_guessing_app/src/models/quiz_v2.dart' show QuizV2;
+import 'package:illust_guessing_app/src/constants/constants.dart'
+    show CHAPTERS_TABLE_NAME, QUIZZES_TABLE_NAME;
 import 'i_repository.dart' show IRepository;
-import '../models/quiz_v2.dart' show QuizV2;
-import 'constants_table_names.dart' show chaptersTableName, quizzesTableName;
 
 class QuizRepositoryV2 implements IRepository<QuizV2> {
   final Database db;
@@ -24,7 +25,7 @@ class QuizRepositoryV2 implements IRepository<QuizV2> {
 
   @override
   Future<QuizV2?> find({required int id, bool includes = false}) async {
-    var records = await db.query(quizzesTableName,
+    var records = await db.query(QUIZZES_TABLE_NAME,
         where: "id=?", whereArgs: [id], limit: 1);
 
     if (records.isEmpty) {
@@ -56,7 +57,7 @@ class QuizRepositoryV2 implements IRepository<QuizV2> {
 
       return quizzes;
     } else {
-      var records = await db.query(quizzesTableName);
+      var records = await db.query(QUIZZES_TABLE_NAME);
       return records.map((record) => QuizV2.fromJson(record)).toList();
     }
   }
@@ -98,9 +99,9 @@ String _buildJoinQuery([int? quizId]) {
       c.correct_area_width,
       c.correct_area_height
     FROM
-      $quizzesTableName AS q
+      $QUIZZES_TABLE_NAME AS q
     INNER JOIN
-      $chaptersTableName AS c
+      $CHAPTERS_TABLE_NAME AS c
     ON
       $onPart;
 ''';

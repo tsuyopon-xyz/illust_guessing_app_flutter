@@ -1,8 +1,9 @@
 import 'package:sqflite/sqflite.dart' show Database;
-import 'i_repository.dart' show IRepository;
-import '../models/chapter.dart' show Chapter;
 import 'package:illust_guessing_app/src/models/quiz_v2.dart';
-import 'constants_table_names.dart' show chaptersTableName, quizzesTableName;
+import 'package:illust_guessing_app/src/constants/constants.dart'
+    show CHAPTERS_TABLE_NAME, QUIZZES_TABLE_NAME;
+import 'package:illust_guessing_app/src/models/chapter.dart' show Chapter;
+import 'i_repository.dart' show IRepository;
 
 class ChapterRepository implements IRepository<Chapter> {
   final Database db;
@@ -23,7 +24,7 @@ class ChapterRepository implements IRepository<Chapter> {
 
   @override
   Future<Chapter?> find({required int id, bool includes = false}) async {
-    var records = await db.query(chaptersTableName,
+    var records = await db.query(CHAPTERS_TABLE_NAME,
         where: "id=?", whereArgs: [id], limit: 1);
 
     if (records.isEmpty) {
@@ -33,8 +34,8 @@ class ChapterRepository implements IRepository<Chapter> {
     if (includes) {
       var chapterRecord = records[0];
       var quizId = chapterRecord['quiz_id'];
-      var quizRecords =
-          await db.query(quizzesTableName, where: 'id=?', whereArgs: [quizId]);
+      var quizRecords = await db
+          .query(QUIZZES_TABLE_NAME, where: 'id=?', whereArgs: [quizId]);
 
       var quiz = QuizV2.fromJson(quizRecords[0]);
       var chapter = Chapter.fromJson(chapterRecord);
@@ -48,10 +49,10 @@ class ChapterRepository implements IRepository<Chapter> {
   @override
   Future<List<Chapter>> findAll({bool includes = false}) async {
     if (includes) {
-      var chapterRecords = await db.query(chaptersTableName);
+      var chapterRecords = await db.query(CHAPTERS_TABLE_NAME);
       var quizIds =
           chapterRecords.map((record) => record['quiz_id']).toSet().toList();
-      var quizRecords = await db.query(quizzesTableName,
+      var quizRecords = await db.query(QUIZZES_TABLE_NAME,
           where: 'id IN (${List.filled(quizIds.length, '?').join(',')})',
           whereArgs: quizIds);
 
@@ -66,7 +67,7 @@ class ChapterRepository implements IRepository<Chapter> {
 
       return chapters;
     } else {
-      var records = await db.query(chaptersTableName);
+      var records = await db.query(CHAPTERS_TABLE_NAME);
       return records.map((record) => Chapter.fromJson(record)).toList();
     }
   }
@@ -75,10 +76,10 @@ class ChapterRepository implements IRepository<Chapter> {
   Future<List<Chapter>> findWhere(
       {required String where, bool includes = false}) async {
     if (includes) {
-      var chapterRecords = await db.query(chaptersTableName, where: where);
+      var chapterRecords = await db.query(CHAPTERS_TABLE_NAME, where: where);
       var quizIds =
           chapterRecords.map((record) => record['quiz_id']).toSet().toList();
-      var quizRecords = await db.query(quizzesTableName,
+      var quizRecords = await db.query(QUIZZES_TABLE_NAME,
           where: 'id IN (${List.filled(quizIds.length, '?').join(',')})',
           whereArgs: quizIds);
 
@@ -93,7 +94,7 @@ class ChapterRepository implements IRepository<Chapter> {
 
       return chapters;
     } else {
-      var records = await db.query(chaptersTableName, where: where);
+      var records = await db.query(CHAPTERS_TABLE_NAME, where: where);
 
       return records.map((record) => Chapter.fromJson(record)).toList();
     }
