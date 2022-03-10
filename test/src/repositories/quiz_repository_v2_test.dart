@@ -47,4 +47,42 @@ Future<void> main() async {
       });
     });
   });
+
+  group('find', () {
+    test('When id is not found, QuizRepository#find returns null.', () async {
+      final repository = QuizRepositoryV2(db: db);
+      const targetChapterId = -1;
+      var quiz = await repository.find(id: targetChapterId);
+
+      expect(quiz, null);
+    });
+
+    test(
+        'When includes is false, QuizRepository#find returns QuizV2 without chapters.',
+        () async {
+      final repository = QuizRepositoryV2(db: db);
+      const targetQuizId = 1;
+      var quiz = await repository.find(id: targetQuizId);
+
+      expect(quiz?.id, targetQuizId);
+      expect(quiz?.title.isNotEmpty, true);
+      expect(quiz?.chapters, isNull);
+    });
+
+    test(
+        'When includes is true, QuizRepository#find returns QuizV2 with chapters.',
+        () async {
+      final repository = QuizRepositoryV2(db: db);
+      const targetQuizId = 1;
+      var quiz = await repository.find(id: targetQuizId, includes: true);
+
+      expect(quiz?.id, targetQuizId);
+      expect(quiz?.title.isNotEmpty, true);
+      expect(quiz?.chapters!.isNotEmpty, true);
+      quiz!.chapters!.forEach((chapter) {
+        expect(chapter.id! > 0, true);
+        expect(chapter.quizId, quiz.id);
+      });
+    });
+  });
 }
