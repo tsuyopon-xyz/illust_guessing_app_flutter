@@ -16,12 +16,35 @@ Future<void> main() async {
     await db.close();
   });
 
-  test('QuizRepository#findAll returns List<Quiz>.', () async {
-    final repository = QuizRepositoryV2(db: db);
-    var quizList = await repository.findAll();
+  group('findAll', () {
+    test(
+        'When includes is false, QuizRepository#findAll returns List<QuizV2> without chapters.',
+        () async {
+      final repository = QuizRepositoryV2(db: db);
+      var quizList = await repository.findAll();
 
-    // expect(quizList.isNotEmpty, equals(true));
-    // expect(quizList[0].id, equals(1));
-    // expect(quizList[0].chapters.length, equals(4));
+      expect(quizList.isNotEmpty, true);
+      expect(quizList[0].id, 1);
+      expect(quizList[0].title.isNotEmpty, true);
+      expect(quizList[0].chapters, null);
+    });
+
+    test(
+        'When includes is true, QuizRepository#findAll returns List<QuizV2> with chapters.',
+        () async {
+      final repository = QuizRepositoryV2(db: db);
+      var quizList = await repository.findAll(includes: true);
+
+      expect(quizList.isNotEmpty, true);
+      expect(quizList[0].id, 1);
+      expect(quizList[0].title.isNotEmpty, true);
+      expect(quizList[0].chapters!.isNotEmpty, true);
+      quizList.forEach((quiz) {
+        quiz.chapters!.forEach((chapter) {
+          expect(chapter.id! > 0, true);
+          expect(chapter.quizId, quiz.id);
+        });
+      });
+    });
   });
 }
