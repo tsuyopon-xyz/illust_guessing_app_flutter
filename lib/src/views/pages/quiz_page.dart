@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:illust_guessing_app/src/models/chapter.dart';
 import 'package:illust_guessing_app/src/models/quiz_v2.dart';
+import 'package:illust_guessing_app/src/views/widgets/quiz/chapter_progress_indicator.dart';
 import 'package:illust_guessing_app/src/views/widgets/quiz/quiz_challenge_view.dart';
 import 'package:illust_guessing_app/src/views/widgets/quiz/quiz_completed_view.dart';
 import 'package:illust_guessing_app/src/views/widgets/quiz/quiz_no_chapter_view.dart';
@@ -40,10 +41,14 @@ class QuizPage extends HookConsumerWidget {
 
     final chapter = chapters[chapterIndex];
 
-    // 更新のたびに出題文を表示したい場合はここのコメントを外す
-    // WidgetsBinding.instance?.addPostFrameCallback((_) {
-    //   _showQuestion(context: context, chapter: chapter);
-    // });
+    useEffect(() {
+      // 更新のたびに出題文を表示したい場合はここのコメントを外す
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        _showQuestion(context: context, chapter: chapter);
+      });
+
+      return null;
+    }, [chapter]);
 
     return Scaffold(
         appBar: AppBar(
@@ -66,9 +71,20 @@ class QuizPage extends HookConsumerWidget {
                 icon: const Icon(Icons.settings))
           ],
         ),
-        body: QuizChallengeView(
-          chapter: chapter,
-          chapterIndexNotifier: chapterIndexNotifier,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ChapterProgressIndicator(
+                currentChapterIndex: chapterIndex,
+                chapterLength: chapters.length),
+            const SizedBox(
+              height: 20, // Spacer
+            ),
+            QuizChallengeView(
+              chapter: chapter,
+              chapterIndexNotifier: chapterIndexNotifier,
+            )
+          ],
         ));
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:illust_guessing_app/src/models/chapter.dart';
+import 'package:illust_guessing_app/src/views/widgets/quiz/quiz_dialog.dart'
+    show showQuizDialog;
 
 class QuizChallengeView extends HookConsumerWidget {
   final Chapter chapter;
@@ -23,6 +25,7 @@ class QuizChallengeView extends HookConsumerWidget {
           } else {
             // TODO: 不正解ページを表示
             print('不正解');
+            showQuizDialog(context: context, title: 'はずれ');
           }
         },
         child: Stack(
