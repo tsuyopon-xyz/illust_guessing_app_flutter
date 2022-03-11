@@ -11,29 +11,15 @@ class QuizPage extends HookConsumerWidget {
   final QuizV2 quiz;
 
   const QuizPage({Key? key, required this.quiz}) : super(key: key);
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(quiz.title),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  context.pushNamed('settings');
-                },
-                icon: const Icon(Icons.settings))
-          ],
-        ),
-        body: _QuizImageView(
-          quiz: quiz,
-        ));
+
+  void _showHint({required BuildContext context, required Chapter chapter}) {
+    _showDialog(context: context, title: 'ヒント', body: chapter.hint);
   }
-}
 
-class _QuizImageView extends HookConsumerWidget {
-  final QuizV2 quiz;
-
-  const _QuizImageView({Key? key, required this.quiz}) : super(key: key);
+  void _showQuestion(
+      {required BuildContext context, required Chapter chapter}) {
+    _showDialog(context: context, title: '出題', body: chapter.question);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,38 +30,97 @@ class _QuizImageView extends HookConsumerWidget {
       );
     }
 
-    final chapterIndex = useState(0);
-    if (chapters.length <= chapterIndex.value) {
-      print("Finished Quiz!");
-      return const Center(
-        child: Text('Finished Quiz!'),
-      );
+    final chapterIndexNotifier = useState(0);
+    final chapterIndex = chapterIndexNotifier.value;
+
+    if (chapters.length <= chapterIndex) {
+      return WrapScaffold(
+          body: Container(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text('全問クリア！'),
+                ElevatedButton(
+                  child: const Text("クイズ選択に戻る"),
+                  onPressed: () {
+                    context.pop();
+                  },
+                ),
+              ],
+            ),
+          ),
+          title: quiz.title);
     }
 
-    final chapter = chapters[chapterIndex.value];
-    if (chapter == null) {
-      return const Center(
-        child: Text('Chapter is not found'),
-      );
-    }
+    final chapter = chapters[chapterIndex];
 
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      _showQuestion(context: context, chapter: chapter);
+    });
+
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(quiz.title),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  _showHint(context: context, chapter: chapter);
+                },
+                icon: const Icon(Icons.lightbulb)),
+            IconButton(
+                onPressed: () {
+                  _showQuestion(context: context, chapter: chapter);
+                },
+                icon: const Icon(Icons.menu_book)),
+            IconButton(
+                onPressed: () {
+                  context.pushNamed('settings');
+                },
+                icon: const Icon(Icons.settings))
+          ],
+        ),
+        body: _QuizImageView(
+          chapter: chapter,
+          chapterIndexNotifier: chapterIndexNotifier,
+        ));
+  }
+}
+
+class _QuizImageView extends HookConsumerWidget {
+  final Chapter chapter;
+  final ValueNotifier<int> chapterIndexNotifier;
+
+  const _QuizImageView(
+      {Key? key, required this.chapter, required this.chapterIndexNotifier})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     return Center(
       child: GestureDetector(
         onTapDown: (TapDownDetails details) {
           bool isCorrect = _isCorrectArea(details.localPosition, chapter);
           if (isCorrect) {
-            chapterIndex.value++;
-            print("chapterIndex : $chapterIndex");
+            // TODO: 正解ページを表示
+            print('正解');
+            chapterIndexNotifier.value++;
+          } else {
+            // TODO: 不正解ページを表示
+            print('不正解');
           }
         },
         child: Stack(
           children: [
-            Image.asset(chapter.imagePath),
+            Image.asset(
+              chapter.imagePath,
+            ),
 
             // To visible correct area.
             Positioned(
-              top: chapter.correctAreaX.toDouble(),
-              left: chapter.correctAreaY.toDouble(),
+              top: chapter.correctAreaY.toDouble(),
+              left: chapter.correctAreaX.toDouble(),
               width: chapter.correctAreaWidth.toDouble(),
               height: chapter.correctAreaHeight.toDouble(),
               child: Container(color: Colors.red.shade500.withOpacity(0.5)),
@@ -94,16 +139,32 @@ class _QuizImageView extends HookConsumerWidget {
     double touchX = localPosition.dx;
     double touchY = localPosition.dy;
 
-    // TODO: touch positionが期待している値と微妙に異なっている部分の調査。
-    // 参考: left(70.0)付近をタッチした時の値が32.0になってしまっている
-    // left: 70.0, top: 30.0, right: 150.0, bottom: 130.0,
-    // touchX: 32.0, touchY: 71.94776119402985
-    print(
-        "left: $left, top: $top, right: $right, bottom: $bottom, touchX: $touchX, touchY: $touchY");
-
     return left <= touchX &&
         touchX <= right &&
         top <= touchY &&
         touchY <= bottom;
   }
+}
+
+void _showDialog({
+  required BuildContext context,
+  required String title,
+  required String body,
+}) {
+  showDialog(
+      context: context,
+      builder: (_context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(body),
+          actions: [
+            ElevatedButton(
+              child: const Text("閉じる"),
+              onPressed: () {
+                Navigator.pop(_context);
+              },
+            ),
+          ],
+        );
+      });
 }
